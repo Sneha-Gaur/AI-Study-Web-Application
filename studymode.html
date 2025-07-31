@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Study Mode – Ask Doubts & Get Answers</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', sans-serif;
+            background: #f4f9fc;
+            color: #333;
+        }
+        
+        header {
+            background: #0066cc;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 30px auto;
+            padding: 20px;
+            background: white;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            border-radius: 12px;
+        }
+        
+        h2 {
+            margin-bottom: 10px;
+            color: #0055aa;
+        }
+        
+        textarea {
+            width: 100%;
+            padding: 15px;
+            font-size: 16px;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            resize: vertical;
+            margin-bottom: 15px;
+        }
+        
+        .btn {
+            background: #0077cc;
+            color: white;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        
+        .btn:hover {
+            background: #005fa3;
+        }
+        
+        .answer-box {
+            margin-top: 20px;
+            background: #e6f2ff;
+            padding: 20px;
+            border-radius: 8px;
+            min-height: 100px;
+        }
+        
+        .tooltip {
+            position: relative;
+            display: inline-block;
+            cursor: help;
+            color: #0077cc;
+        }
+        
+        .tooltip .tooltiptext {
+            visibility: hidden;
+            width: 220px;
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 10px;
+            border-radius: 8px;
+            position: absolute;
+            z-index: 1;
+            bottom: 125%;
+            left: 50%;
+            margin-left: -110px;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        
+        .tooltip:hover .tooltiptext {
+            visibility: visible;
+            opacity: 1;
+        }
+        
+        .language-toggle {
+            margin-bottom: 15px;
+            text-align: right;
+        }
+        
+        .voice-btn {
+            background-color: #22aa22;
+            margin-left: 10px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h1>🧠 Study Mode – Ask Your Doubts</h1>
+    </header>
+
+    <div class="container">
+        <div class="language-toggle">
+            🌐 Language:
+            <select id="languageSelect">
+        <option value="en">English</option>
+        <option value="hi">Hindi</option>
+        <option value="bn">Bengali</option>
+        <option value="ta">Tamil</option>
+        <option value="te">Telugu</option>
+      </select>
+        </div>
+
+        <h2>🔍 Enter Your Question</h2>
+        <textarea id="questionInput" rows="4" placeholder="Type your question here..."></textarea>
+        <br>
+        <button class="btn" onclick="getAnswer()">Get Answer</button>
+        <button class="btn voice-btn" onclick="startVoiceInput()">🎙️ Speak</button>
+
+        <div class="answer-box" id="answerBox">
+            <p><strong>Answer will appear here...</strong></p>
+        </div>
+
+        <div style="margin-top: 30px;">
+            <p>
+                <span class="tooltip">What is AI?
+          <span class="tooltiptext">AI stands for Artificial Intelligence, which enables machines to mimic human intelligence.</span>
+                </span>
+                |
+                <span class="tooltip">What is ML?
+          <span class="tooltiptext">Machine Learning is a subset of AI focused on learning from data without being explicitly programmed.</span>
+                </span>
+            </p>
+        </div>
+    </div>
+
+    <script>
+        function getAnswer() {
+            const question = document.getElementById("questionInput").value.trim();
+            const language = document.getElementById("languageSelect").value;
+            const answerBox = document.getElementById("answerBox");
+
+            if (question === "") {
+                answerBox.innerHTML = "<p style='color:red;'>❗ Please enter a question.</p>";
+                return;
+            }
+
+            // Simulated AI response
+            const sampleAnswer = {
+                en: "This is an AI-generated answer based on your input. You can ask Why or How to get deeper insights.",
+                hi: "यह आपके प्रश्न के आधार पर एआई द्वारा दिया गया उत्तर है। गहराई से जानने के लिए Why या How पूछें।",
+                bn: "এটি আপনার প্রশ্নের উপর ভিত্তি করে একটি এআই-উত্তর। Why বা How জিজ্ঞাসা করুন আরও জানতে।",
+                ta: "இது உங்கள் கேள்வியை அடிப்படையாகக் கொண்ட AI பதில். மேலும் அறிய 'Why' அல்லது 'How' என்பதைக் கேளுங்கள்.",
+                te: "ఇది మీ ప్రశ్న ఆధారంగా AI నుండి వచ్చిన సమాధానం. లోతుగా తెలుసుకోవడానికి Why లేదా How ను అడగండి."
+            };
+
+            answerBox.innerHTML = `<p>${sampleAnswer[language] || sampleAnswer.en}</p>`;
+        }
+
+        function startVoiceInput() {
+            const recognition = new(window.SpeechRecognition || window.webkitSpeechRecognition)();
+            recognition.lang = 'en-IN';
+            recognition.start();
+
+            recognition.onresult = function(event) {
+                const transcript = event.results[0][0].transcript;
+                document.getElementById("questionInput").value = transcript;
+                getAnswer();
+            };
+
+            recognition.onerror = function(event) {
+                alert("Voice input error: " + event.error);
+            };
+        }
+    </script>
+</body>
+
+</html>
