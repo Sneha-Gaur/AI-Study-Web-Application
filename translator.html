@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Language Translator</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', sans-serif;
+            background: linear-gradient(to right, #f1f1f1, #e3f2fd);
+            color: #333;
+        }
+        
+        header {
+            background-color: #1976d2;
+            color: white;
+            padding: 1rem;
+            text-align: center;
+            font-size: 1.8rem;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 2rem auto;
+            padding: 2rem;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .section-title {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            text-align: center;
+            color: #1976d2;
+        }
+        
+        label {
+            font-weight: 600;
+            margin-top: 1rem;
+            display: block;
+        }
+        
+        select,
+        textarea,
+        button {
+            width: 100%;
+            margin-top: 0.5rem;
+            padding: 10px;
+            font-size: 1rem;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+        }
+        
+        button {
+            background-color: #1976d2;
+            color: white;
+            border: none;
+            margin-top: 1.5rem;
+            cursor: pointer;
+            transition: 0.3s ease;
+        }
+        
+        button:hover {
+            background-color: #125ea6;
+        }
+        
+        .output-box {
+            margin-top: 2rem;
+            padding: 1rem;
+            background-color: #f5f5f5;
+            border-radius: 6px;
+            min-height: 100px;
+            border-left: 4px solid #1976d2;
+        }
+        
+        footer {
+            margin-top: 2rem;
+            text-align: center;
+            font-size: 0.9rem;
+            color: #888;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>🔁 Language Translator</header>
+
+    <div class="container">
+        <div class="section-title">Translate Text Instantly</div>
+
+        <label for="inputLang">From Language:</label>
+        <select id="inputLang">
+      <option value="en">English</option>
+      <option value="hi">Hindi</option>
+      <option value="ta">Tamil</option>
+      <option value="bn">Bengali</option>
+      <option value="te">Telugu</option>
+    </select>
+
+        <label for="outputLang">To Language:</label>
+        <select id="outputLang">
+      <option value="hi">Hindi</option>
+      <option value="en">English</option>
+      <option value="ta">Tamil</option>
+      <option value="bn">Bengali</option>
+      <option value="te">Telugu</option>
+    </select>
+
+        <label for="inputText">Enter Your Text:</label>
+        <textarea id="inputText" rows="5" placeholder="Type something here..."></textarea>
+
+        <button onclick="translateText()">Translate</button>
+
+        <div class="output-box" id="translatedOutput">Translation will appear here...</div>
+    </div>
+
+    <footer>Powered by AI Translator Interface (Frontend Mock)</footer>
+
+    <script>
+        function translateText() {
+            const inputLang = document.getElementById("inputLang").value;
+            const outputLang = document.getElementById("outputLang").value;
+            const inputText = document.getElementById("inputText").value.trim();
+            const outputBox = document.getElementById("translatedOutput");
+
+            if (!inputText) {
+                outputBox.innerHTML = "❗ Please enter text to translate.";
+                return;
+            }
+
+            outputBox.innerHTML = `<strong>Translated (${outputLang}):</strong> <br><em>${inputText.split('').reverse().join('')}</em> <br><small>[Mock Reverse Output]</small>`;
+        }
+    </script>
+
+</body>
+
+</html>
