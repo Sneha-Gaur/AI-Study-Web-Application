@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>AI Quiz Generator</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to right, #00c6ff, #0072ff);
+            color: #fff;
+        }
+        
+        header {
+            background: rgba(0, 0, 0, 0.2);
+            padding: 20px;
+            text-align: center;
+            font-size: 28px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 30px auto;
+            background: #ffffff20;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 0 12px rgba(0, 0, 0, 0.3);
+        }
+        
+        .btn {
+            background: #fff;
+            color: #0072ff;
+            border: none;
+            padding: 12px 20px;
+            margin-top: 10px;
+            border-radius: 6px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+        
+        .btn:hover {
+            background: #dceeff;
+        }
+        
+        .question {
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+        
+        .options label {
+            display: block;
+            background: rgba(255, 255, 255, 0.1);
+            margin-bottom: 8px;
+            padding: 10px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background 0.2s ease;
+        }
+        
+        .options input {
+            margin-right: 10px;
+        }
+        
+        .options label:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+        
+        .result {
+            font-size: 18px;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            font-size: 14px;
+            opacity: 0.6;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>🧠 AI-Powered Quiz Generator</header>
+
+    <div class="container">
+        <div id="quizBox">
+            <p class="question" id="question">Click "Generate Quiz" to begin!</p>
+            <div class="options" id="options"></div>
+            <button class="btn" onclick="nextQuestion()" id="nextBtn" style="display: none;">Next</button>
+            <div class="result" id="result"></div>
+        </div>
+        <button class="btn" onclick="generateQuiz()">🎲 Generate Quiz</button>
+    </div>
+
+    <footer>&copy; 2025 AI Study App – Smart Learning</footer>
+
+    <script>
+        const quizData = [{
+            question: "What is the capital of India?",
+            options: ["Mumbai", "New Delhi", "Kolkata", "Hyderabad"],
+            answer: "New Delhi"
+        }, {
+            question: "Which language is used for web apps?",
+            options: ["PHP", "Python", "JavaScript", "All of the above"],
+            answer: "All of the above"
+        }, {
+            question: "What does CSS stand for?",
+            options: ["Creative Style Sheets", "Cascading Style Sheets", "Colorful Style Sheets", "Computer Style Sheets"],
+            answer: "Cascading Style Sheets"
+        }, {
+            question: "Which tag is used for inserting a line break in HTML?",
+            options: ["<break>", "<lb>", "<br>", "<b>"],
+            answer: "<br>"
+        }, {
+            question: "Which of the following is a JavaScript framework?",
+            options: ["Django", "Flask", "React", "Laravel"],
+            answer: "React"
+        }];
+
+        let current = 0;
+        let score = 0;
+
+        function generateQuiz() {
+            current = 0;
+            score = 0;
+            document.getElementById("result").innerHTML = "";
+            document.getElementById("nextBtn").style.display = "inline-block";
+            showQuestion();
+        }
+
+        function showQuestion() {
+            const q = quizData[current];
+            document.getElementById("question").innerText = q.question;
+            const optionsContainer = document.getElementById("options");
+            optionsContainer.innerHTML = "";
+            q.options.forEach(opt => {
+                const label = document.createElement("label");
+                label.innerHTML = `<input type="radio" name="option" value="${opt}"> ${opt}`;
+                optionsContainer.appendChild(label);
+            });
+        }
+
+        function nextQuestion() {
+            const selected = document.querySelector('input[name="option"]:checked');
+            if (!selected) {
+                alert("Please select an option!");
+                return;
+            }
+
+            if (selected.value === quizData[current].answer) {
+                score++;
+            }
+
+            current++;
+
+            if (current < quizData.length) {
+                showQuestion();
+            } else {
+                document.getElementById("question").innerText = "Quiz Completed!";
+                document.getElementById("options").innerHTML = "";
+                document.getElementById("nextBtn").style.display = "none";
+                document.getElementById("result").innerText = `Your Score: ${score} / ${quizData.length}`;
+            }
+        }
+    </script>
+
+</body>
+
+</html>
