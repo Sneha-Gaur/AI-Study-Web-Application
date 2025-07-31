@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AI Study Genius - Home</title>
+
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
+
+
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(to bottom, #0f172a, #1e293b);
+            color: white;
+        }
+        
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 40px;
+            background-color: #1e293b;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        header h1 {
+            font-size: 24px;
+        }
+        
+        nav a {
+            margin-left: 20px;
+            color: #ccc;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        
+        nav a:hover {
+            color: #00b4d8;
+        }
+        
+        .hero {
+            text-align: center;
+            padding: 80px 20px;
+        }
+        
+        .hero h2 {
+            font-size: 38px;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+        
+        .hero p {
+            font-size: 18px;
+            color: #ccc;
+            max-width: 600px;
+            margin: auto;
+        }
+        
+        .btn {
+            background-color: #3b82f6;
+            padding: 12px 30px;
+            margin-top: 30px;
+            display: inline-block;
+            border-radius: 25px;
+            color: white;
+            font-weight: 600;
+            text-decoration: none;
+        }
+        
+        .btn:hover {
+            background-color: #2563eb;
+        }
+        
+        .section {
+            padding: 60px 20px;
+            max-width: 1200px;
+            margin: auto;
+        }
+        
+        .section h3 {
+            font-size: 28px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 20px;
+        }
+        
+        .feature-box {
+            background-color: #1e293b;
+            padding: 20px;
+            border: 1px solid #334155;
+            border-radius: 12px;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+        
+        .feature-box:hover {
+            transform: scale(1.05);
+        }
+        
+        .feature-box i {
+            font-size: 30px;
+            color: #3b82f6;
+            margin-bottom: 15px;
+        }
+        
+        .feature-box h4 {
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+        
+        .feature-box p {
+            color: #aaa;
+            font-size: 14px;
+        }
+        
+        .footer {
+            background-color: #0f172a;
+            text-align: center;
+            padding: 20px;
+            color: #aaa;
+            font-size: 14px;
+        }
+        
+        @media (max-width: 600px) {
+            .hero h2 {
+                font-size: 28px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h1>🎓 AI Study Genius</h1>
+        <nav>
+            <a href="#features">Features</a>
+            <a href="#about">About</a>
+            <a href="#start">Get Started</a>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <h2>Empower Your Learning with <span style="color:#3b82f6">AI</span></h2>
+        <p>Instant doubt solving, multilingual support, voice input, and concept explanation all in one powerful platform.</p>
+        <a href="#start" class="btn">🚀 Start Studying Now</a>
+    </section>
+
+
+    <section class="section" id="features">
+        <h3>🔍 Key Features</h3>
+        <div class="features">
+            <div class="feature-box">
+                <i class="fas fa-language"></i>
+                <h4>Language Converter</h4>
+                <p>Translate English to Hindi and other regional languages instantly.</p>
+            </div>
+            <div class="feature-box">
+                <i class="fas fa-microphone-alt"></i>
+                <h4>Voice Input</h4>
+                <p>Ask questions by speaking — fast and hands-free learning.</p>
+            </div>
+            <div class="feature-box">
+                <i class="fas fa-camera"></i>
+                <h4>Live Camera Scan</h4>
+                <p>Scan questions using your camera and get instant solutions.</p>
+            </div>
+            <div class="feature-box">
+                <i class="fas fa-book"></i>
+                <h4>Step-by-Step Solutions</h4>
+                <p>Detailed answers with proper explanation for all subjects.</p>
+            </div>
+            <div class="feature-box">
+                <i class="fas fa-lightbulb"></i>
+                <h4>Ask Why/How</h4>
+                <p>Understand concepts deeply with AI-powered reasoning.</p>
+            </div>
+            <div class="feature-box">
+                <i class="fas fa-clock"></i>
+                <h4>Study Planner</h4>
+                <p>Get AI-generated smart study timetables for your syllabus.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="about">
+        <h3>📘 About This App</h3>
+        <p style="text-align: center; color: #ccc; max-width: 700px; margin: auto;">
+            AI Study Genius is a next-gen learning platform that integrates advanced AI with multilingual accessibility to help every student succeed. Whether it's solving doubts, explaining concepts, or building notes, it’s all in one place.
+        </p>
+    </section>
+
+    <section class="section" id="start" style="text-align:center">
+        <h3>👩‍🎓 Ready to Boost Your Studies?</h3>
+        <p style="color:#ccc;">Join the AI-powered revolution in education and learn smarter.</p>
+        <a href="#" class="btn">Go to Dashboard</a>
+    </section>
+
+
+    <footer class="footer">
+        © 2025 AI Study Genius • Built with ❤️ in HTML, CSS, JS
+    </footer>
+
+</body>
+
+</html>
