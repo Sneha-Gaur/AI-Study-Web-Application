@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ask Why/How - Deep Reasoning Assistant</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: linear-gradient(to right, #e0eafc, #cfdef3);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        header {
+            background-color: #4a90e2;
+            width: 100%;
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+        
+        main {
+            margin-top: 40px;
+            max-width: 700px;
+            width: 90%;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        h2 {
+            color: #333;
+        }
+        
+        input,
+        textarea {
+            width: 100%;
+            padding: 15px;
+            margin-top: 10px;
+            font-size: 16px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            resize: vertical;
+        }
+        
+        button {
+            margin-top: 20px;
+            background-color: #4a90e2;
+            color: white;
+            padding: 12px 25px;
+            border: none;
+            font-size: 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        button:hover {
+            background-color: #357ab7;
+        }
+        
+        #output {
+            margin-top: 30px;
+            padding: 20px;
+            background-color: #f5f7fa;
+            border-left: 4px solid #4a90e2;
+            border-radius: 6px;
+            color: #444;
+            line-height: 1.6;
+        }
+        
+        .error {
+            color: red;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h1>🧠 Ask "Why/How" - Deep Reasoning Assistant</h1>
+        <p>Get meaningful, AI-powered deep explanations</p>
+    </header>
+
+    <main>
+        <h2>Enter Your Question</h2>
+        <input type="text" id="question" placeholder='e.g., "Why is the sky blue?" or "How do plants make food?"' />
+        <button onclick="generateExplanation()">Explain</button>
+        <div id="error" class="error"></div>
+        <div id="output"></div>
+    </main>
+
+    <script>
+        function generateExplanation() {
+            const question = document.getElementById("question").value.trim();
+            const output = document.getElementById("output");
+            const error = document.getElementById("error");
+            output.innerHTML = "";
+            error.innerHTML = "";
+
+            if (!question.toLowerCase().startsWith("why") && !question.toLowerCase().startsWith("how")) {
+                error.innerText = "❗ Please enter a question starting with 'Why' or 'How'.";
+                return;
+            }
+
+
+            const response = `🔍 <strong>Answer:</strong><br><br>
+        <em>${question}</em><br><br>
+        👉 Here's a detailed explanation: <br>
+        1. First, understand the basic concept behind the question. <br>
+        2. Then explore related principles and logic. <br>
+        3. Finally, connect the dots with real-life examples. <br><br>
+        📌 <strong>AI Insight:</strong> Always look at the root cause or mechanism when asking 'Why' or 'How'.`;
+
+            output.innerHTML = response;
+        }
+    </script>
+
+</body>
+
+</html>
