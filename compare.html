@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Compare Answers</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #f0f4f8;
+        }
+        
+        header {
+            background-color: #3a86ff;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            font-size: 24px;
+            letter-spacing: 1px;
+        }
+        
+        .container {
+            display: flex;
+            flex-direction: column;
+            padding: 30px;
+            max-width: 1200px;
+            margin: auto;
+        }
+        
+        .inputs {
+            display: flex;
+            flex-direction: row;
+            gap: 20px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+        
+        textarea {
+            flex: 1;
+            min-height: 180px;
+            resize: vertical;
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            font-size: 16px;
+        }
+        
+        button {
+            background-color: #06d6a0;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            font-size: 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            margin-bottom: 20px;
+        }
+        
+        button:hover {
+            background-color: #05c092;
+        }
+        
+        .result {
+            display: flex;
+            gap: 20px;
+            flex-direction: row;
+            flex-wrap: wrap;
+        }
+        
+        .box {
+            flex: 1;
+            background-color: #ffffff;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+        }
+        
+        .highlight {
+            background-color: #ffe066;
+            font-weight: bold;
+        }
+        
+        @media (max-width: 768px) {
+            .inputs,
+            .result {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>🆚 Compare Two Answers</header>
+    <div class="container">
+        <div class="inputs">
+            <textarea id="answer1" placeholder="Enter first answer here..."></textarea>
+            <textarea id="answer2" placeholder="Enter second answer here..."></textarea>
+        </div>
+        <button onclick="compareAnswers()">🔍 Compare</button>
+
+        <div class="result">
+            <div class="box" id="output1"><strong>Answer 1 Analysis:</strong><br><em>—</em></div>
+            <div class="box" id="output2"><strong>Answer 2 Analysis:</strong><br><em>—</em></div>
+        </div>
+    </div>
+
+    <script>
+        function compareAnswers() {
+            const a1 = document.getElementById("answer1").value.trim();
+            const a2 = document.getElementById("answer2").value.trim();
+            const words1 = a1.split(/\s+/);
+            const words2 = a2.split(/\s+/);
+            const output1 = words1.map(w => words2.includes(w) ? `<span class="highlight">${w}</span>` : w).join(" ");
+            const output2 = words2.map(w => words1.includes(w) ? `<span class="highlight">${w}</span>` : w).join(" ");
+            document.getElementById("output1").innerHTML = "<strong>Answer 1 Analysis:</strong><br>" + output1;
+            document.getElementById("output2").innerHTML = "<strong>Answer 2 Analysis:</strong><br>" + output2;
+        }
+    </script>
+</body>
+
+</html>
