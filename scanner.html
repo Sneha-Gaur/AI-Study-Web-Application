@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AI Image Scanner</title>
+    <style>
+        body {
+            font-family: "Segoe UI", sans-serif;
+            background: linear-gradient(135deg, #e8f0ff, #ffffff);
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+        
+        header {
+            background-color: #304ffe;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            font-size: 1.6rem;
+            font-weight: bold;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 30px auto;
+            padding: 20px;
+            background-color: #f4f6fc;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+        }
+        
+        .upload-section {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        
+        input[type="file"] {
+            padding: 10px;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+        
+        #preview {
+            margin-top: 20px;
+            max-width: 100%;
+            border: 2px dashed #ccc;
+            padding: 10px;
+            display: none;
+        }
+        
+        #result {
+            margin-top: 20px;
+            padding: 15px;
+            background: #ffffff;
+            border-left: 4px solid #304ffe;
+            border-radius: 5px;
+            display: none;
+        }
+        
+        #cameraBtn {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #00c853;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        
+        #simulateBtn {
+            margin-top: 10px;
+            padding: 10px 20px;
+            background-color: #2962ff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        
+        video {
+            display: none;
+            margin-top: 20px;
+            width: 100%;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 10px;
+            font-size: 0.9rem;
+            color: #777;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>📸 AI Scanner – Image & Camera Solve</header>
+
+    <div class="container">
+        <div class="upload-section">
+            <label><strong>Upload Image of a Question:</strong></label><br/>
+            <input type="file" id="imageInput" accept="image/*"><br/>
+            <img id="preview" alt="Preview" /><br/>
+            <button id="simulateBtn">🔍 Simulate OCR & Solve</button>
+        </div>
+
+        <div class="upload-section">
+            <button id="cameraBtn">📷 Activate Live Camera</button><br/>
+            <video id="video" autoplay></video>
+        </div>
+
+        <div id="result">
+            <h3>📄 Extracted & Solved Text:</h3>
+            <p id="outputText">Loading simulated solution...</p>
+        </div>
+    </div>
+
+    <footer>© 2025 AI Study App | Scanner Module</footer>
+
+    <script>
+        const imageInput = document.getElementById('imageInput');
+        const preview = document.getElementById('preview');
+        const result = document.getElementById('result');
+        const outputText = document.getElementById('outputText');
+        const simulateBtn = document.getElementById('simulateBtn');
+        const cameraBtn = document.getElementById('cameraBtn');
+        const video = document.getElementById('video');
+
+        imageInput.addEventListener('change', function() {
+            const file = imageInput.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    preview.src = e.target.result;
+                    preview.style.display = 'block';
+                }
+                reader.readAsDataURL(file);
+            }
+        });
+
+        simulateBtn.addEventListener('click', () => {
+            result.style.display = 'block';
+            outputText.innerHTML = "🔍 Detected Question: <br><em>What is the capital of France?</em><br><br>✅ <strong>Answer:</strong> Paris.";
+        });
+
+        cameraBtn.addEventListener('click', () => {
+            video.style.display = 'block';
+            navigator.mediaDevices.getUserMedia({
+                    video: true
+                })
+                .then(stream => {
+                    video.srcObject = stream;
+                })
+                .catch(err => {
+                    alert("Camera access denied or not supported.");
+                });
+        });
+    </script>
+
+</body>
+
+</html>
