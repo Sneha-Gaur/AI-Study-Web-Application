@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Smart Timetable Planner</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: #f5f7fa;
+            margin: 0;
+            padding: 20px;
+        }
+        
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        
+        .planner-container {
+            max-width: 800px;
+            margin: auto;
+            background: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        form {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+        }
+        
+        label {
+            flex: 1 1 200px;
+            display: flex;
+            flex-direction: column;
+            font-weight: 600;
+        }
+        
+        input,
+        select,
+        button {
+            padding: 10px;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+            margin-top: 5px;
+            font-size: 1rem;
+        }
+        
+        button {
+            background-color: #4CAF50;
+            color: white;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        
+        button:hover {
+            background-color: #45a049;
+        }
+        
+        table {
+            width: 100%;
+            margin-top: 30px;
+            border-collapse: collapse;
+        }
+        
+        th,
+        td {
+            padding: 12px;
+            text-align: center;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        th {
+            background-color: #f0f0f0;
+        }
+        
+        .no-entry {
+            text-align: center;
+            color: #777;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>📘 Smart Timetable Planner</h1>
+    <div class="planner-container">
+        <form id="timetableForm">
+            <label>
+        Subject:
+        <input type="text" id="subject" required />
+      </label>
+
+            <label>
+        Day:
+        <select id="day" required>
+          <option value="">--Select--</option>
+          <option>Monday</option>
+          <option>Tuesday</option>
+          <option>Wednesday</option>
+          <option>Thursday</option>
+          <option>Friday</option>
+          <option>Saturday</option>
+          <option>Sunday</option>
+        </select>
+      </label>
+
+            <label>
+        Time:
+        <input type="time" id="time" required />
+      </label>
+
+            <button type="submit">➕ Add</button>
+        </form>
+
+        <div id="timetableOutput">
+            <h2>Your Weekly Plan</h2>
+            <table id="timetable">
+                <thead>
+                    <tr>
+                        <th>Subject</th>
+                        <th>Day</th>
+                        <th>Time</th>
+                    </tr>
+                </thead>
+                <tbody id="tableBody">
+                    <tr>
+                        <td colspan="3" class="no-entry">No entries yet</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script>
+        const form = document.getElementById('timetableForm');
+        const tableBody = document.getElementById('tableBody');
+
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const subject = document.getElementById('subject').value;
+            const day = document.getElementById('day').value;
+            const time = document.getElementById('time').value;
+
+            const row = document.createElement('tr');
+            row.innerHTML = `
+        <td>${subject}</td>
+        <td>${day}</td>
+        <td>${time}</td>
+      `;
+
+
+            const defaultRow = document.querySelector('.no-entry');
+            if (defaultRow) defaultRow.remove();
+
+            tableBody.appendChild(row);
+
+
+            form.reset();
+        });
+    </script>
+</body>
+
+</html>
